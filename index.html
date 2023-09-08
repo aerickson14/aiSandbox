@@ -6,10 +6,18 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-  <button class="mdc-button foo-button">
-    <div class="mdc-button__ripple"></div>
-    <span class="mdc-button__label">Button</span>
-  </button>
+  <div class="container">
+    <div class="panel prompts">
+    </div>
+    <div class="panel">
+      <button class="mdc-button foo-button">
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label">Send</span>
+      </button>
+    </div>
+    <div class="panel plugins">
+    </div>
+  </div>
   <script>
     mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
   </script>
