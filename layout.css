@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+}
+
+.panel {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.panel + .panel {
+  margin-left: 2%;
+}
+
+.panel.prompts {
+  width: 20%;
+}
+
+.output-panels {
+}
+
+.panel.plugins { 
+    width: 20%;
+}
