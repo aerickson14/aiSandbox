@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  
+<head>  
   <link href="layout.css" rel="stylesheet">
   <script type="module" src="main.js"></script>
 </head>
@@ -12,15 +8,18 @@
   <div class="container">
     <div class="panel prompts">
         <div class="panel prompt">
+          <textarea></textarea>
         </div>
         <div class="panel tune">
-        </div>
+           <textarea></textarea>
+       </div>
     </div>
     <div class="panel">
         <div class="panel chat">
-          <button class="mdc-button foo-button">
-            <div class="mdc-button__ripple"></div>
-            <span class="mdc-button__label">Send</span>
+          <div class="transcript">
+          </div>
+          <input type="text" id="chat-input" class="chat-input"></input>
+          <button class="send-button">
           </button>
         </div>
         <div class="panel artifact">
@@ -36,7 +35,7 @@
     </div>
   </div>
   <script>
-    mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
+
   </script>
 </body>
 </html>
