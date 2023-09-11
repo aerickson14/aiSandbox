@@ -11,13 +11,13 @@ async function askChatSystem(text) {
   return `AI: ${text}`
 }
 
-async function handleChatKey(event, input) {
+async function handleChatKey(event) {
 
   const key = event.key ?? 'Enter'
   if (key !== 'Enter') {
     return
   }
-  
+  const input = event.target
   const text = input.value.trim()
   
   if (!text) {
