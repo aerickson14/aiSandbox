@@ -25,12 +25,12 @@ async function handleChatKey(event) {
   }
   if (text.trim().startsWith('/')) {
     handleSlashCommand(text)
-    textinput.value = ""
+    input.value = ""
     return
   }
 
   chatLines.push({ role: "user", content: text })
-  textinput.value = ""
+  input.value = ""
 
   const answer = await askChatSystem(text)
   if (answer) {
