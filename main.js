@@ -7,11 +7,11 @@ function pushTranscript(role, html) {
   transcript.scrollTop = transcript.scrollHeight
 }
 
-function askChatSystem(text) {
+async function askChatSystem(text) {
   return `AI: ${text}`
 }
 
-function handleChatKey(event, input) {
+async function handleChatKey(event, input) {
 
   const key = event.key ?? 'Enter'
   if (key !== 'Enter') {
