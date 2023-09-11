@@ -1,3 +1,3 @@
-function handleChatKey(event, input) {
+export function handleChatKey(event, input) {
   console.log(event)
 }
