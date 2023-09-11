@@ -1,1 +1,3 @@
-console.log("I am main")
+function handleChatKey(event, input) {
+  console.log(event)
+}
