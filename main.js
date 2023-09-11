@@ -1,3 +1,5 @@
-export function handleChatKey(event, input) {
+function handleChatKey(event, input) {
   console.log(event)
 }
+
+document.getElementById('chat-input').addEventListener('keyup', handleChatKey)
