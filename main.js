@@ -75,3 +75,5 @@ async function handleChatKey(event) {
 }
 
 document.getElementById('chat-input').addEventListener('keyup', handleChatKey)
+window.setOpenAIToken = setOpenAIToken
+
