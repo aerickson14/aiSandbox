@@ -36,7 +36,6 @@ async function callChatSystem(messages, options) {
     model: name,
     messages,
     temperature,
-    ...addOns
   }
   const body = JSON.stringify(data)
   const response = await fetch(url, {method: 'POST', body, headers })
