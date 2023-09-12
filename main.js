@@ -1,6 +1,16 @@
 
 const chatLines = []
 const transcript = document.getElementById('transcript')
+let currentSystemPrompt = 'You are a helpful AI and answer all questions succinctly.'
+
+function setOpenAIToken(token) {
+  localStorage.setItem('OpenAIToken')
+}
+
+function getOpenAIToken(token) {
+  return localStorage.getItem('OpenAIToken')
+}
+
 
 function pushTranscript(role, html) {
   transcript.insertAdjacentHTML('beforeend', `<div class="wrapper"><div class="${role}">${html}</div></div>`)
@@ -8,7 +18,30 @@ function pushTranscript(role, html) {
 }
 
 async function askChatSystem(text) {
-  return `AI: ${text}`
+  const promptObject = { role: "system", content: currentSystemPrompt }
+  const messages = [ promptObject, ...chatLines ]
+  const result = await callChatSystem(messages)
+  return text
+}
+
+async function callChatSystem(messages, options) {
+  const model = "gpt-4-0613"
+  const temperature = 0.8
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: 'Bearer ' + getOpenAIToken()
+  }
+
+  const data = {
+    model: name,
+    messages,
+    temperature,
+    ...addOns
+  }
+  const body = JSON.stringify(data)
+  const response = await fetch(url, {method: 'POST', body, headers })
+  const json = await response.json()
+  return json
 }
 
 async function handleChatKey(event) {
@@ -31,6 +64,7 @@ async function handleChatKey(event) {
 
   chatLines.push({ role: "user", content: text })
   input.value = ""
+  pushTranscript('user', text)
 
   const answer = await askChatSystem(text)
   if (answer) {
