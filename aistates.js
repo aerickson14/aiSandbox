@@ -46,7 +46,7 @@ console.log("outlet", outletName)
       console.error(`Missing outlet ${outletName}!`)
       continue
     }
-    const targetParams = outletTarget.params
+    const targetParams = outletTarget.directives.params
     const properties = { }
     const required = []
     for (const targetParamName in targetParams) {
@@ -60,7 +60,7 @@ console.log("required", required)
 
     const functionInfo = {
       name: outletName,
-      description: outletTarget.description,
+      description: outletTarget.directives.description,
       parameters: {
         type: 'object',
         properties
