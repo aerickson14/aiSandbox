@@ -83,7 +83,7 @@ export async function init() {
   for (const name in prompts) {
     const { directives, prompt } = prompts[name]
     const functions = generateFunctions(prompts, directives)
-console.log("setting functions", {promptInfo}, {functions})
+console.log("setting functions", {directives, prompt}, {functions})
     prompts[name].functions = functions
   }
 
