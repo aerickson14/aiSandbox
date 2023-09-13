@@ -1,3 +1,4 @@
+import * as aiStates from "aistates.js"
 
 const chatLines = []
 const transcript = document.getElementById('transcript')
@@ -47,7 +48,6 @@ async function callChatSystem(messages, options) {
 }
 
 async function handleChatKey(event) {
-
   const key = event.key ?? 'Enter'
   if (key !== 'Enter') {
     return
@@ -73,10 +73,10 @@ async function handleChatKey(event) {
     chatLines.push({ role: "assistant", content: answer })
     pushTranscript('assistant', answer)
   }
-
-
 }
 
 document.getElementById('chat-input').addEventListener('keyup', handleChatKey)
 window.setOpenAIToken = setOpenAIToken
+
+await aiStates.init()
 
