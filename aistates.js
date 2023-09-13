@@ -80,8 +80,8 @@ export async function init() {
   for (const promptInfo of parsedPrompts) {
     prompts[promptInfo.name] = promptInfo
   }
-  for (const promptInfo of prompts) {
-    const { name, directives, prompt } = promptInfo
+  for (const name in prompts) {
+    const { name, directives, prompt } = prompts[name]
     const functions = generateFunctions(prompts, directives)
 console.log("setting functions", {promptInfo}, {functions})
     prompts[name].functions = functions
