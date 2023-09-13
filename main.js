@@ -4,7 +4,7 @@ const transcript = document.getElementById('transcript')
 let currentSystemPrompt = 'You are a helpful AI and answer all questions succinctly.'
 
 function setOpenAIToken(token) {
-  localStorage.setItem('OpenAIToken')
+  localStorage.setItem('OpenAIToken', token)
 }
 
 function getOpenAIToken(token) {
