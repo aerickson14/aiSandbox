@@ -45,7 +45,7 @@ console.log("outlet", outletName)
     const targetParams = outletTarget.params
     const properties = { }
     const required = []
-    for (const targetParamName of targetParams) {
+    for (const targetParamName in targetParams) {
       properties[targetParamName] = {
         type: 'string',
         description: targetParams[targetParamName]
