@@ -87,33 +87,3 @@ export async function init() {
 export function getPrompt(name) {
   return prompts[name]
 }
-
-
-
-{
-  "functions": [
-    {
-      "name": "calculate",
-      "description": "Calculate or evaluate the numeric value of an expression",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "expression": {
-            "type": "string",
-            "description": "The expression in javascript syntax"
-          },
-          "latex": {
-            "type": "string",
-            "description": "The expression in latex syntax for display purposes"
-          },
-          "explanation": {
-            "type": "string",
-            "description": "Plain text explaining the expression and justifying its use"
-          }
-        },
-        "required": ["expression", "latex", "explanation"]
-      }
-    }
-  ],
-  "function_call": "auto"
-}

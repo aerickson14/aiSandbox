@@ -26,14 +26,22 @@ function pushTranscript(role, html) {
 }
 
 async function askChatSystem(text) {
-  const promptObject = { role: "system", content: currentSystemPrompt }
+  const promptObject = { role: "system", content: currentSystemPrompt.prompt }
   const messages = [ promptObject, ...chatLines ]
-  const result = await callChatSystem(messages)
+  const options = { 
+    extras: { }
+  }
+  if (currentSystemPrompt.functions) {
+    options.extras.functions = currentSystemPrompt.functions
+    options.extras.function_call = 'auto'
+  }
+  const result = await callChatSystem(messages, options)
   const answer = result?.choices?.[0]?.message?.content
   return answer
 }
 
 async function callChatSystem(messages, options) {
+  const extras = options.extras ?? { }
   const model = "gpt-4-0613"
   const url = "https://api.openai.com/v1/chat/completions"
 
@@ -46,6 +54,7 @@ async function callChatSystem(messages, options) {
   const data = {
     model,
     messages,
+    ...extras,
     temperature,
   }
   const body = JSON.stringify(data)
