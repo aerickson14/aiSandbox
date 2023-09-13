@@ -95,5 +95,7 @@ document.getElementById('chat-input').addEventListener('keyup', handleChatKey)
 window.setOpenAIToken = setOpenAIToken
 window.setAIState = setAIState
 
+// For debug only
+window.aiStates = aiStates
 await aiStates.init()
 
