@@ -4,7 +4,7 @@ const prompts = { }
 async function fetchState(name) {
   const response = await fetch(`states/${name}.txt`)
   const text = await response.text()
-  return text
+  return { name, text }
 }
 
 directiveAdders = {
@@ -14,6 +14,7 @@ directiveAdders = {
     const params = directives.params ?? { }
     const [match, name, description] = info.split(/([a-zA-Z]*)\s+(.*)/)
     params[name] = description
+    directives.params = params
   },
 }
 
@@ -21,7 +22,8 @@ function addDirective(directives, type, info) {
   directiveAdders[type](directives, info)
 }
 
-function parseStateText(text) {
+function parseStateText(textInfo) {
+  const { name, text } = textInfo
   const lines = text.split('\n')
   const directiveLines = lines.filter(line => line.match(/^[a-zA-Z]*:/))
   const prompt = lines.filter(line => !line.match(/^[a-zA-Z]*:/)).join('\n')
@@ -30,7 +32,37 @@ function parseStateText(text) {
     const [match, type, info] = directiveLine.match(/(^[a-zA-Z]*):\s*(.*)$/)
     addDirective(directives, type, info)
   }
-  return { directives, prompt }
+  return { name, directives, prompt }
+}
+
+function generateFunctions(prompts, directives) {
+  const { outlets } = directives
+  const outletNames = outlets.split(' ')
+  const functions = []
+  for (const outletName of outletNames) {
+    const outletTarget = prompts[outletName]
+    const targetParams = outletTarget.params
+    const properties = { }
+    const required = []
+    for (const targetParamName of targetParams) {
+      properties[targetParamName] = {
+        type: 'string',
+        description: targetParams[targetParamName]
+      } 
+      required.push(targetParamName)
+    }
+    const functionInfo = {
+      name: outletName,
+      description: outletTarget.description,
+      parameters: {
+        type: 'object',
+        properties
+      },
+      required
+    }
+    functions.push(functionInfo)
+  }
+  return functions
 }
 
 export async function init() {
@@ -40,7 +72,16 @@ export async function init() {
   const stateTexts = await Promise.all(stateNames.map(fetchState))
   console.log("FETCHED", stateTexts)
   const parsedPrompts = stateTexts.map(parseStateText)
-  console.log("PARSED", parsedPrompts)
+  for (const promptInfo of parsedPrompts) {
+    prompts[promptInfo.name] = promptInfo
+  }
+  for (const promptInfo of prompts) {
+    const { name, directives, prompt } = promptInfo
+    const functions = generateFunctions(prompts, directives)
+    prompts[name].functions = functions
+  }
+
+  console.log("RESOLVED PROMPTS", prompts)
 }
 
 export function getPrompt(name) {
