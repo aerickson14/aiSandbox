@@ -42,6 +42,9 @@ function generateFunctions(prompts, directives) {
   for (const outletName of outletNames) {
 console.log("outlet", outletName)
     const outletTarget = prompts[outletName]
+    if (!outletTarget) {
+      continue
+    }
     const targetParams = outletTarget.params
     const properties = { }
     const required = []
