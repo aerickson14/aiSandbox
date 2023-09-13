@@ -35,7 +35,7 @@ async function callChatSystem(messages, options) {
   }
 
   const data = {
-    model: name,
+    model,
     messages,
     temperature,
   }
