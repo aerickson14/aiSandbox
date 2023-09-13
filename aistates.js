@@ -7,7 +7,7 @@ async function fetchState(name) {
   return { name, text }
 }
 
-directiveAdders = {
+const directiveAdders = {
   description: (directives, info) => directives.description = info,
   outlets: (directives, info) => directives.outlets = info,
   param: (directives, info) => {
