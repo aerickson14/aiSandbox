@@ -21,7 +21,8 @@ async function askChatSystem(text) {
   const promptObject = { role: "system", content: currentSystemPrompt }
   const messages = [ promptObject, ...chatLines ]
   const result = await callChatSystem(messages)
-  return text
+  const answer = result?.choices?.[0]?.message?.content
+  return answer
 }
 
 async function callChatSystem(messages, options) {
