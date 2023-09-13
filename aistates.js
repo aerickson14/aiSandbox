@@ -43,6 +43,7 @@ function generateFunctions(prompts, directives) {
 console.log("outlet", outletName)
     const outletTarget = prompts[outletName]
     if (!outletTarget) {
+      console.error(`Missing outlet ${outletName}!`)
       continue
     }
     const targetParams = outletTarget.params
