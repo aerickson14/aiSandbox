@@ -1,4 +1,4 @@
-import * as aiStates from "aistates.js"
+import * as aiStates from "./aistates.js"
 
 const chatLines = []
 const transcript = document.getElementById('transcript')
