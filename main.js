@@ -12,6 +12,13 @@ function getOpenAIToken(token) {
   return localStorage.getItem('OpenAIToken')
 }
 
+function setSystemPrompt(prompt) {
+  currentSystemPrompt = prompt
+}
+
+function setAIState(name) {
+  setSystemPrompt(aiStates.getPrompt(name))
+}
 
 function pushTranscript(role, html) {
   transcript.insertAdjacentHTML('beforeend', `<div class="wrapper"><div class="${role}">${html}</div></div>`)
