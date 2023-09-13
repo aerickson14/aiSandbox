@@ -26,6 +26,8 @@ async function askChatSystem(text) {
 
 async function callChatSystem(messages, options) {
   const model = "gpt-4-0613"
+  const url = "https://api.openai.com/v1/chat/completions"
+
   const temperature = 0.8
   const headers = {
     "Content-Type": "application/json",
