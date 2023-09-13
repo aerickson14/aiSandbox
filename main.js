@@ -2,7 +2,7 @@ import * as aiStates from "./aistates.js"
 
 const chatLines = []
 const transcript = document.getElementById('transcript')
-let currentSystemPrompt = 'You are a helpful AI and answer all questions succinctly.'
+let currentSystemPrompt = { prompt: 'You are a helpful AI and answer all questions succinctly.' }
 
 function setOpenAIToken(token) {
   localStorage.setItem('OpenAIToken', token)
