@@ -37,6 +37,12 @@ async function askChatSystem(text) {
   }
   const result = await callChatSystem(messages, options)
   const answer = result?.choices?.[0]?.message?.content
+  const functionCall = result?.choices?.[0]?.message?.function_call
+  if (functionCall) {
+    const parameters = JSON.parse(functionCall.parameters)
+    //TODO: Distinguish between state change and other function calls
+    setAIState(functionCall.name)
+  }
   return answer
 }
 
