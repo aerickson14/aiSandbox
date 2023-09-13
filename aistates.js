@@ -40,6 +40,7 @@ function generateFunctions(prompts, directives) {
   const outletNames = outlets.split(' ')
   const functions = []
   for (const outletName of outletNames) {
+console.log("outlet", outletName)
     const outletTarget = prompts[outletName]
     const targetParams = outletTarget.params
     const properties = { }
@@ -51,6 +52,8 @@ function generateFunctions(prompts, directives) {
       } 
       required.push(targetParamName)
     }
+console.log("required", required)
+
     const functionInfo = {
       name: outletName,
       description: outletTarget.description,
@@ -60,6 +63,8 @@ function generateFunctions(prompts, directives) {
       },
       required
     }
+console.log("functionInfo", functionInfo)
+
     functions.push(functionInfo)
   }
   return functions
@@ -78,6 +83,7 @@ export async function init() {
   for (const promptInfo of prompts) {
     const { name, directives, prompt } = promptInfo
     const functions = generateFunctions(prompts, directives)
+console.log("setting functions", {promptInfo}, {functions})
     prompts[name].functions = functions
   }
 
