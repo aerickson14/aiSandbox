@@ -24,4 +24,22 @@
 
 .chat .transcript {
   min-height: 300px;
+  width: 80%;
+}
+
+.transcript .user {
+  background-color: #feffb0b4;
+  text-align: right;
+  float: right;
+  padding: 8px;
+  max-width: 70%;
+  border-radius: 8px;
+  margin: 2px;
+}
+.transcript .assistant {
+  background-color: #F3F3F3;;
+  padding: 8px;
+  max-width: 70%;
+  border-radius: 8px;
+  margin: 2px;
 }
