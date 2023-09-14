@@ -20,7 +20,7 @@ function setAIState(name) {
   const prompt = aiStates.getPrompt(name)
   setSystemPrompt(prompt)
   document.getElementById('state-name-input').value = name
-  document.getElementById('prompt-edit').value = prompt
+  document.getElementById('prompt-edit').value = prompt.prompt
 }
 
 function pushTranscript(role, html) {
@@ -42,10 +42,11 @@ async function askChatSystem(text) {
   const answer = result?.choices?.[0]?.message?.content
   const functionCall = result?.choices?.[0]?.message?.function_call
   if (functionCall) {
-    const parameters = JSON.parse(functionCall.parameters)
-    console.log("function parameters", parameters)
+    const arguments = JSON.parse(functionCall.arguments)
+    console.log("function arguments", arguments)
     //TODO: Distinguish between state change and other function calls
     setAIState(functionCall.name)
+    return functionCall.arguments.summary
   }
   return answer
 }
