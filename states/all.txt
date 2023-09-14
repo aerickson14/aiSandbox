@@ -1,2 +1,5 @@
 numbers
 whole
+rationals
+integers
+reals
