@@ -88,7 +88,9 @@ export async function init() {
     const { directives, prompt } = prompts[name]
     const functions = generateFunctions(prompts, directives)
 console.log("setting functions", {directives, prompt}, {functions})
-    prompts[name].functions = functions
+    if (functions.length > 0) {
+      prompts[name].functions = functions
+    }
   }
 
   console.log("RESOLVED PROMPTS", prompts)
