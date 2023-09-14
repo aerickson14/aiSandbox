@@ -17,7 +17,10 @@ function setSystemPrompt(prompt) {
 }
 
 function setAIState(name) {
-  setSystemPrompt(aiStates.getPrompt(name))
+  const prompt = aiStates.getPrompt(name)
+  setSystemPrompt(prompt)
+  document.getElementById('state-name-input').value = name
+  document.getElementById('prompt-edit').value = prompt
 }
 
 function pushTranscript(role, html) {
@@ -40,6 +43,7 @@ async function askChatSystem(text) {
   const functionCall = result?.choices?.[0]?.message?.function_call
   if (functionCall) {
     const parameters = JSON.parse(functionCall.parameters)
+    console.log("function parameters", parameters)
     //TODO: Distinguish between state change and other function calls
     setAIState(functionCall.name)
   }
@@ -67,6 +71,14 @@ async function callChatSystem(messages, options) {
   const response = await fetch(url, {method: 'POST', body, headers })
   const json = await response.json()
   return json
+}
+
+async function handleStateNameKey(event) {
+  const key = event.key ?? 'Enter'
+  if (key !== 'Enter') {
+    return
+  }
+  setAIState(event.target.value)
 }
 
 async function handleChatKey(event) {
@@ -98,6 +110,8 @@ async function handleChatKey(event) {
 }
 
 document.getElementById('chat-input').addEventListener('keyup', handleChatKey)
+document.getElementById('state-name-input').addEventListener('keyup', handleStateNameKey)
+
 window.setOpenAIToken = setOpenAIToken
 window.setAIState = setAIState
 
