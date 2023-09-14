@@ -42,11 +42,11 @@ async function askChatSystem(text) {
   const answer = result?.choices?.[0]?.message?.content
   const functionCall = result?.choices?.[0]?.message?.function_call
   if (functionCall) {
-    const arguments = JSON.parse(functionCall.arguments)
-    console.log("function arguments", arguments)
+    const args = JSON.parse(functionCall.arguments)
+console.log("function arguments", args)
     //TODO: Distinguish between state change and other function calls
     setAIState(functionCall.name)
-    return functionCall.arguments.summary
+    return args.summary
   }
   return answer
 }
