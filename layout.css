@@ -27,6 +27,11 @@
   width: 80%;
 }
 
+.transcript .wrapper {
+  width: 100%;
+  display: inline-block;
+}
+
 .transcript .user {
   background-color: #feffb0b4;
   text-align: right;
