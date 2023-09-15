@@ -60,7 +60,7 @@ console.log("function arguments", args)
 
 async function callChatSystem(messages, options) {
   const extras = options.extras ?? { }
-  const model = "gpt-4-0613"
+  const model = "gpt-3.5-turbo-0613"
   const url = "https://api.openai.com/v1/chat/completions"
 
   const temperature = 0.8
