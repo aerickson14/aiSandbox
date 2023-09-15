@@ -20,6 +20,10 @@ body, html {
   height: 100%;
 }
 
+.prompts .prompt {
+  height: 50%;
+}
+
 .panel.action {
   height: 100%;
 }
