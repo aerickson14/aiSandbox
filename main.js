@@ -146,6 +146,7 @@ window.setAIState = setAIState
 
 // For debug only
 window.aiStates = aiStates
+window.rubrics = rubrics
 
 await aiStates.init()
 await rubrics.init()
