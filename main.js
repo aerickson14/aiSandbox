@@ -98,11 +98,14 @@ async function handleRubricNameKey(event) {
 }
 
 async function handleRunRubric(event) {
-  const key = event.key ?? 'Enter'
-  if (key !== 'Enter') {
-    return
+  const promptObject = { role: "system", content: currentRubric }
+  const messages = [ promptObject, ...chatLines ]
+  const options = { 
+    extras: { }
   }
-  setRubric(event.target.value)
+  const result = await callChatSystem(messages, options)
+  const answer = result?.choices?.[0]?.message?.content
+  pushTranscript('assistant', answer)
 }
 
 async function handleChatKey(event) {
