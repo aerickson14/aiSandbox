@@ -1,0 +1,1 @@
+Print "Rubric Released!" if the text below contains no errors, otherwise print "Rubric Rejects!".

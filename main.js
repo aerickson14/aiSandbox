@@ -1,8 +1,10 @@
 import * as aiStates from "./aistates.js"
+import * as rubrics from "./rubrics.js"
 
 const chatLines = []
 const transcript = document.getElementById('transcript')
 let currentSystemPrompt = { prompt: 'You are a helpful AI and answer all questions succinctly.' }
+let currentRubric = 'Print "Rubric Released!" if the text below contains no errors, otherwise print "Rubric Rejects!".'
 
 function setOpenAIToken(token) {
   localStorage.setItem('OpenAIToken', token)
@@ -21,6 +23,11 @@ function setAIState(name) {
   setSystemPrompt(prompt)
   document.getElementById('state-name-input').value = name
   document.getElementById('prompt-edit').value = prompt.prompt
+}
+
+function setRubric(name) {
+  currentRubric = rubrics.getRubric(name)
+  document.getElementById('rubric-edit').value = currentRubric
 }
 
 function pushTranscript(role, html) {
@@ -82,6 +89,22 @@ async function handleStateNameKey(event) {
   setAIState(event.target.value)
 }
 
+async function handleRubricNameKey(event) {
+  const key = event.key ?? 'Enter'
+  if (key !== 'Enter') {
+    return
+  }
+  setRubric(event.target.value)
+}
+
+async function handleRunRubric(event) {
+  const key = event.key ?? 'Enter'
+  if (key !== 'Enter') {
+    return
+  }
+  setRubric(event.target.value)
+}
+
 async function handleChatKey(event) {
   const key = event.key ?? 'Enter'
   if (key !== 'Enter') {
@@ -112,11 +135,14 @@ async function handleChatKey(event) {
 
 document.getElementById('chat-input').addEventListener('keyup', handleChatKey)
 document.getElementById('state-name-input').addEventListener('keyup', handleStateNameKey)
+document.getElementById('rubric-name-input').addEventListener('keyup', handleRubricNameKey)
+document.getElementById('run-rubric-button').addEventListener('click', handleRunRubric)
 
 window.setOpenAIToken = setOpenAIToken
 window.setAIState = setAIState
 
 // For debug only
 window.aiStates = aiStates
-await aiStates.init()
 
+await aiStates.init()
+await rubrics.init()
