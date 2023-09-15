@@ -12,7 +12,7 @@
             <input type="text" id="state-name-input"></input>
           </div>
           <div style="height: 80%;">
-            <textarea id="prompt-edit" style="height: 100%;"></textarea>
+            <textarea id="prompt-edit" style="height: 100%;" disabled></textarea>
           </div>
         </div>
         <div class="panel tune">
@@ -24,7 +24,7 @@
           <div id="transcript" class="transcript">
           </div>
           <input type="text" id="chat-input" class="chat-input"></input>
-          <button class="send-button">
+          <button class="send-button">=></button>
           </button>
         </div>
         <div class="panel artifact">
@@ -32,8 +32,9 @@
     </div>
     <div class="panel plugins">
         <div class="panel rubric">
-        </div>
-        <div class="panel rubric">
+          <input type="text" id="rubric-name-input"></input>
+          <textarea id="rubric-edit" style="height: 100%;" disabled></textarea>
+          <button id="run-rubric-button">Run Rubric</button>
         </div>
         <div class="panel data">
         </div>

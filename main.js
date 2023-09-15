@@ -1,8 +1,10 @@
 import * as aiStates from "./aistates.js"
+import * as rubrics from "./rubrics.js"
 
 const chatLines = []
 const transcript = document.getElementById('transcript')
 let currentSystemPrompt = { prompt: 'You are a helpful AI and answer all questions succinctly.' }
+let currentRubric = 'Print "Rubric Released!" if the text below contains no errors, otherwise print "Rubric Rejects!".'
 
 function setOpenAIToken(token) {
   localStorage.setItem('OpenAIToken', token)
@@ -21,6 +23,11 @@ function setAIState(name) {
   setSystemPrompt(prompt)
   document.getElementById('state-name-input').value = name
   document.getElementById('prompt-edit').value = prompt.prompt
+}
+
+function setRubric(name) {
+  currentRubric = rubrics.getRubric(name)
+  document.getElementById('rubric-edit').value = currentRubric
 }
 
 function pushTranscript(role, html) {
@@ -53,7 +60,7 @@ console.log("function arguments", args)
 
 async function callChatSystem(messages, options) {
   const extras = options.extras ?? { }
-  const model = "gpt-4-0613"
+  const model = "gpt-3.5-turbo-0613"
   const url = "https://api.openai.com/v1/chat/completions"
 
   const temperature = 0.8
@@ -80,6 +87,25 @@ async function handleStateNameKey(event) {
     return
   }
   setAIState(event.target.value)
+}
+
+async function handleRubricNameKey(event) {
+  const key = event.key ?? 'Enter'
+  if (key !== 'Enter') {
+    return
+  }
+  setRubric(event.target.value)
+}
+
+async function handleRunRubric(event) {
+  const promptObject = { role: "system", content: currentRubric }
+  const messages = [ promptObject, ...chatLines ]
+  const options = { 
+    extras: { }
+  }
+  const result = await callChatSystem(messages, options)
+  const answer = result?.choices?.[0]?.message?.content
+  pushTranscript('assistant', answer)
 }
 
 async function handleChatKey(event) {
@@ -112,11 +138,15 @@ async function handleChatKey(event) {
 
 document.getElementById('chat-input').addEventListener('keyup', handleChatKey)
 document.getElementById('state-name-input').addEventListener('keyup', handleStateNameKey)
+document.getElementById('rubric-name-input').addEventListener('keyup', handleRubricNameKey)
+document.getElementById('run-rubric-button').addEventListener('click', handleRunRubric)
 
 window.setOpenAIToken = setOpenAIToken
 window.setAIState = setAIState
 
 // For debug only
 window.aiStates = aiStates
-await aiStates.init()
+window.rubrics = rubrics
 
+await aiStates.init()
+await rubrics.init()

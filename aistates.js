@@ -37,7 +37,7 @@ function parseStateText(textInfo) {
 
 function generateFunctions(prompts, directives) {
   const { outlets } = directives
-  const outletNames = outlets.split(' ')
+  const outletNames = (outlets ?? '').split(' ')
   const functions = []
   for (const outletName of outletNames) {
 console.log("outlet", outletName)
