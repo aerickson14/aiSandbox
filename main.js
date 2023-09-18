@@ -114,6 +114,17 @@ async function handleChatKey(event) {
     return
   }
   const input = event.target
+  
+  handleSendMessage(input)
+}
+
+async function handleSendMessageClick(event) {
+  const input = document.getElementById('chat-input')
+  
+  handleSendMessage(input)
+}
+
+async function handleSendMessage(input) {
   const text = input.value.trim()
   
   if (!text) {
@@ -137,6 +148,7 @@ async function handleChatKey(event) {
 }
 
 document.getElementById('chat-input').addEventListener('keyup', handleChatKey)
+document.getElementById('send-message-button').addEventListener('click', handleSendMessageClick)
 document.getElementById('state-name-input').addEventListener('keyup', handleStateNameKey)
 document.getElementById('rubric-name-input').addEventListener('keyup', handleRubricNameKey)
 document.getElementById('run-rubric-button').addEventListener('click', handleRunRubric)
