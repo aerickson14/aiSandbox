@@ -2,46 +2,74 @@
 <html>
 <head>  
   <link href="layout.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script type="module" src="./main.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="panel prompts">
-        <div class="panel prompt">
-          <div>
-            <input type="text" id="state-name-input"></input>
+  <div id="container">
+    <div id="left-panel" class="panel">
+      <div class="section prompts">
+          <div class="section-title">
+            <img src="question.svg" />
+            <span>Prompts</span>
           </div>
-          <div style="height: 80%;">
-            <textarea id="prompt-edit" style="height: 100%;" disabled></textarea>
+          <div class="prompt">
+            <div class="search-container">
+              <img src="search-lg.svg" />
+              <input type="text" id="state-name-input" placeholder="Search prompts" />
+            </div>
+            <div>
+              <textarea id="prompt-edit" disabled></textarea>
+            </div>
           </div>
+      </div>
+      <div class="section data-sources">
+        <div class="section-title">
+          <img src="file-attachment.svg" />
+          <span>Additional Data Sources</span>
         </div>
-        <div class="panel tune">
-           <textarea></textarea>
-       </div>
+      </div>
     </div>
-    <div class="panel action">
-        <div class="panel chat">
-          <div id="transcript" class="transcript">
-          </div>
-          <input type="text" id="chat-input" class="chat-input"></input>
-          <button class="send-button">=></button>
+    <div id="center-panel" class="panel">
+      <div class="section chat">
+        <div id="chat-header" class="section-title">
+          <img src="layers-three.svg" />
+          <span>Conversation</span>
+        </div>
+        <div id="chat-body" class="transcript">
+        </div>
+        <div id="chat-footer">
+          <input type="text" id="chat-input" placeholder="Message" />
+          <button class="send-button">
+            <img src="send.svg" />
           </button>
         </div>
-        <div class="panel artifact">
+      </div>
+      <div class="section artifact">
+        <div class="section-title">
+          <img src="layout-alt.svg" />
+          <span>Artifact</span>
         </div>
+      </div>
     </div>
-    <div class="panel plugins">
-        <div class="panel rubric">
-          <input type="text" id="rubric-name-input"></input>
-          <textarea id="rubric-edit" style="height: 100%;" disabled></textarea>
-          <button id="run-rubric-button">Run Rubric</button>
-        </div>
-        <div class="panel data">
-        </div>
+    <div id="right-panel" class="panel">
+      <div class="section plugins">
+          <div class="section-title">
+            <img src="layers-three.svg" />
+            <span>Objectives</span>
+          </div>  
+          <div class="rubric">
+            <div class="search-container">
+              <img src="search-lg.svg" />
+              <input type="text" id="rubric-name-input" placeholder="Search rubrics" />
+            </div>
+            <textarea id="rubric-edit" disabled></textarea>
+            <button id="run-rubric-button">Run Rubric</button>
+          </div>
+      </div>
+      <div class="section data">
+      </div>
     </div>
   </div>
-  <script>
-
-  </script>
 </body>
 </html>

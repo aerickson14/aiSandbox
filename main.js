@@ -2,7 +2,7 @@ import * as aiStates from "./aistates.js"
 import * as rubrics from "./rubrics.js"
 
 const chatLines = []
-const transcript = document.getElementById('transcript')
+const transcript = document.getElementById('chat-body')
 let currentSystemPrompt = { prompt: 'You are a helpful AI and answer all questions succinctly.' }
 let currentRubric = 'Print "Rubric Released!" if the text below contains no errors, otherwise print "Rubric Rejects!".'
 
@@ -31,7 +31,7 @@ function setRubric(name) {
 }
 
 function pushTranscript(role, html) {
-  transcript.insertAdjacentHTML('beforeend', `<div class="wrapper"><div class="${role}">${html}</div></div>`)
+  transcript.insertAdjacentHTML('beforeend', `<div class="wrapper"><div class="chat-message ${role}">${html}</div></div>`)
   transcript.scrollTop = transcript.scrollHeight
 }
 
