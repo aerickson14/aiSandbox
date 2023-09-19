@@ -174,7 +174,7 @@ document.getElementById('state-name-input').addEventListener('keyup', handleStat
 document.getElementById('rubric-name-input').addEventListener('keyup', handleRubricNameKey)
 document.getElementById('run-rubric-button').addEventListener('click', handleRunRubric)
 document.getElementById('set-openai-key-button').addEventListener('click', handleSetOpenAIKeyClick)
-// document.getElementById('openai-key-input').addEventListener('keyup', handleOpenAIInputKey)
+document.getElementById('openai-key-input').addEventListener('keyup', handleOpenAIInputKey)
 
 window.onload = function() {
   checkForOpenAIKey()
