@@ -22,6 +22,26 @@ body, html {
   padding: 24px;
 }
 
+.warning {
+  font-size: 12px;
+  border-radius: 12px;
+  border: 2px solid #B93815;
+  background: #FFF4ED;
+  color: #B93815;
+  padding: 8px;
+}
+
+.small-font {
+  font-size: 12px;
+}
+
+.code {
+  font-family: monospace;
+  background: #F2F4F7;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
 #left-panel {
   width: 30%;
   height: 100%;
@@ -53,16 +73,21 @@ body, html {
   color: #344054;
 }
 
-.search-container {
+.input-container {
+  display: flex;
+  margin: 24px 0;
+}
+
+.input-field {
+  flex: 1;
   padding: 10px 14px;
-  margin-bottom: 24px;
   border-radius: 8px;
   border: 1px solid #D0D5DD;
   background-color: #FFF;
   position: relative;
 }
 
-.search-container input {
+.input-field input {
   font-size: 16px;
   font-style: normal;
   font-weight: 200;
@@ -70,7 +95,10 @@ body, html {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  margin-left: 8px;
+}
+
+.input-field img {
+  padding-right: 8px;
 }
 
 #prompt-edit {
@@ -165,26 +193,18 @@ body, html {
   bottom: 0;
 }
 
-#chat-input {
-  width: 100%;
-  flex: 1;
-  border: 1px solid #D0D5DD;
-  border-radius: 8px;
-  padding: 8px 14px;
-  color: #667085;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
+.input-container button {
+  margin-left: 8px;
 }
 
-.send-button {
+.primary-button {
   border-radius: 8px;
   border: 1px solid #7F56D9;
   background: #7F56D9;
   color: #FFF;
   padding: 8px;
-  margin-left: 8px;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 #rubric-edit {

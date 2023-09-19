@@ -14,6 +14,39 @@ function getOpenAIToken(token) {
   return localStorage.getItem('OpenAIToken')
 }
 
+function checkForOpenAIKey() {
+  const token = localStorage.getItem('OpenAIToken')
+  if (token) {
+    const startIndex = 3 // show first 3
+    const maskSize = token.length - 4 // leave last 4
+    const maskedToken = token.replace(token.substring(startIndex, maskSize), "...")
+    document.getElementById('open-ai-key').textContent = maskedToken
+    document.getElementById('display-open-ai-key').style.display = "block"
+    document.getElementById('set-openai-key').style.display = "none"
+  } else {
+    document.getElementById('set-openai-key').style.display = "block"
+    document.getElementById('display-open-ai-key').style.display = "none"
+  }
+}
+
+async function handleSetOpenAIKeyClick(event) {
+  const key = document.getElementById('openai-key-input').value
+  setOpenAIToken(key)
+  checkForOpenAIKey()
+}
+
+async function handleOpenAIInputKey(event) {
+  const key = event.key ?? 'Enter'
+  if (key !== 'Enter') {
+    return
+  }
+  const input = event.target
+  const text = input.value.trim()
+
+  setOpenAIKey(text)
+  checkForOpenAIKey()
+}
+
 function setSystemPrompt(prompt) {
   currentSystemPrompt = prompt
 }
@@ -140,6 +173,12 @@ document.getElementById('chat-input').addEventListener('keyup', handleChatKey)
 document.getElementById('state-name-input').addEventListener('keyup', handleStateNameKey)
 document.getElementById('rubric-name-input').addEventListener('keyup', handleRubricNameKey)
 document.getElementById('run-rubric-button').addEventListener('click', handleRunRubric)
+document.getElementById('set-openai-key-button').addEventListener('click', handleSetOpenAIKeyClick)
+// document.getElementById('openai-key-input').addEventListener('keyup', handleOpenAIInputKey)
+
+window.onload = function() {
+  checkForOpenAIKey()
+}
 
 window.setOpenAIToken = setOpenAIToken
 window.setAIState = setAIState
