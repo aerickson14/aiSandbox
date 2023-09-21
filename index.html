@@ -14,9 +14,11 @@
             <span>Prompts</span>
           </div>
           <div class="prompt">
-            <div class="search-container">
-              <img src="search-lg.svg" />
-              <input type="text" id="state-name-input" placeholder="Search prompts" />
+            <div class="input-container">
+              <div class="input-field">
+                <img src="search-lg.svg" />
+                <input type="text" id="state-name-input" placeholder="Search prompts" />
+              </div>
             </div>
             <div>
               <textarea id="prompt-edit" disabled></textarea>
@@ -38,8 +40,10 @@
         </div>
         <div id="chat-body" class="transcript">
         </div>
-        <div id="chat-footer">
-          <input type="text" id="chat-input" placeholder="Message" />
+        <div id="chat-footer" class="input-container">
+          <div class="input-field">
+            <input type="text" id="chat-input" placeholder="Message" />
+          </div>
           <button id="send-message-button" class="primary-button">
             <img src="send.svg" />
           </button>
@@ -59,15 +63,37 @@
             <span>Objectives</span>
           </div>  
           <div class="rubric">
-            <div class="search-container">
-              <img src="search-lg.svg" />
-              <input type="text" id="rubric-name-input" placeholder="Search rubrics" />
+            <div class="input-container">
+              <div class="input-field">
+                <img src="search-lg.svg" />
+                <input type="text" id="rubric-name-input" placeholder="Search rubrics" />
+              </div>
             </div>
             <textarea id="rubric-edit" disabled></textarea>
-            <button id="run-rubric-button">Run Rubric</button>
+            <button id="run-rubric-button" class="primary-button">Run Rubric</button>
           </div>
       </div>
       <div class="section data">
+      </div>
+      <div class="section settings">
+        <div class="section-title">
+          <img src="settings.svg" />
+          <span>Settings</span>
+        </div>
+        <div id="set-openai-key" style="display: none">
+          <div class="warning">
+            An OpenAI key is required in order for this demo to function. If you know your key, enter it here. If you have not yet created a key, check out <a href="https://github.com/tedgoddard/aiSandbox#using-your-openai-key-with-the-project" target="_blank">Using your OpenAI key with this project</a> in the README.
+          </div>
+          <div class="input-container">
+            <div class="input-field">
+              <input id="openai-key-input" type="text" placeholder="Enter your OpenAI key" />
+            </div> 
+            <button id="set-openai-key-button" class="primary-button">Set</button>
+          </div>
+        </div>
+        <div id="display-open-ai-key" class="small-font" style="display: none">
+          Using OpenAI key: <span id="open-ai-key" class="code"></span>
+        </div>
       </div>
     </div>
   </div>
