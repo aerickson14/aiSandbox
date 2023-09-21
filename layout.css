@@ -197,6 +197,10 @@ body, html {
   margin-left: 8px;
 }
 
+#send-message-button {
+  margin-left: 8px;
+}
+
 .primary-button {
   border-radius: 8px;
   border: 1px solid #7F56D9;
